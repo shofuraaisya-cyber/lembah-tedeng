@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lembah Tedeng — Camping Ground Dieng</title>
+<meta name="description" content="Lembah Tedeng, camping ground di dataran tinggi Dieng, Kejajar, Wonosobo. Sunrise, bukit berbunga, sewa tenda & jeep.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- FONT: 3 keluarga font dipakai di sini — ganti nama font di URL ini kalau mau ganti semuanya -->
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Karla:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* ===== PALET WARNA — ganti nilai hex di sini untuk ubah tema warna seluruh web ===== */
+    --canvas: #E7DFC9;   /* krem kanvas tenda, warna dasar halaman */
+    --canvas-dark: #D8CDA9;
+    --ink: #262319;      /* hitam tinta untuk teks */
+    --rust: #B4502A;     /* oranye api unggun, warna aksen utama */
+    --dusk: #435066;     /* biru abu senja/subuh */
+    --moss: #545F42;     /* hijau lumut */
+    --gold: #C79A3C;     /* emas matahari terbit */
+    --paper: #F5F0E1;    /* putih kertas untuk kartu */
+
+    /* ===== FONT — ganti nama font di sini (harus sama dengan nama di link Google Fonts di atas) ===== */
+    --font-display: 'Big Shoulders Display', sans-serif;
+    --font-body: 'Karla', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  body{
+    font-family: var(--font-body);
+    background: var(--canvas);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-left: clamp(20px, 5vw, 56px);
+    padding-right: clamp(20px, 5vw, 56px);
+  }
+
+  /* textured background - halftone dots, kesan kertas/cetak sablon */
+  body{
+    background-image: radial-gradient(var(--canvas-dark) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    border-bottom: 3px solid var(--ink);
+    background: var(--canvas);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px clamp(20px, 5vw, 56px);
+  }
+  .logo{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+  }
+  .logo span{ color: var(--rust); }
+  .nav-links{
+    display:flex;
+    gap: clamp(18px, 3vw, 34px);
+    align-items:center;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  .nav-links a{ border-bottom: 2px solid transparent; padding-bottom: 3px; }
+  .nav-links a:hover{ border-color: var(--rust); }
+  .nav-cta{
+    background: var(--ink);
+    color: var(--canvas) !important;
+    padding: 9px 16px;
+  }
+  .nav-cta:hover{ border-color: var(--ink) !important; background: var(--rust); }
+  .nav-toggle{ display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
+
+  @media (max-width: 760px){
+    .nav-links{
+      position:fixed; top:64px; left:0; right:0;
+      background: var(--canvas);
+      border-bottom: 3px solid var(--ink);
+      flex-direction:column; align-items:flex-start;
+      padding: 22px;
+      gap: 18px;
+      transform: translateY(-150%);
+      transition: transform 0.25s ease;
+      z-index: 90;
+    }
+    .nav-links.open{ transform: translateY(0); }
+    .nav-toggle{ display:block; }
+  }
+
+  /* ---------- STEMPEL (elemen ciri khas / signature) ---------- */
+  .stamp{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    width: 118px; height: 118px;
+    border: 2.5px solid var(--rust);
+    border-radius: 50%;
+    transform: rotate(-9deg);
+    font-family: var(--font-mono);
+    color: var(--rust);
+    text-align:center;
+    line-height:1.25;
+    flex-shrink:0;
+  }
+  .stamp b{ font-size: 1.1rem; display:block; }
+  .stamp small{ font-size: 0.58rem; text-transform:uppercase; letter-spacing:0.05em; }
+  .stamp::before{
+    content:'';
+    position:absolute;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{ padding: clamp(50px,8vw,80px) 0 0; }
+  .hero-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 34px;
+  }
+  .hero-eyebrow{
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--dusk);
+  }
+  h1.hero-title{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3.4rem, 9vw, 7.5rem);
+    line-height: 0.86;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-top: 8px;
+  }
+  h1.hero-title .line2{ color: var(--rust); margin-left: clamp(20px, 6vw, 90px); }
+
+  .hero-sub{
+    display:grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 40px;
+    padding-bottom: 50px;
+    border-bottom: 3px solid var(--ink);
+  }
+  @media (max-width: 820px){ .hero-sub{ grid-template-columns:1fr; } }
+  .hero-desc{ font-size: 1.08rem; max-width: 52ch; }
+  .hero-desc .lead{ font-weight:700; }
+
+  .ticket{
+    background: var(--paper);
+    border: 2px dashed var(--ink);
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+  }
+  .ticket-row{
+    display:flex; justify-content:space-between;
+    padding: 7px 0;
+    border-bottom: 1px dotted rgba(38,35,25,0.3);
+  }
+  .ticket-row:last-child{ border-bottom:none; }
+  .ticket-row b{ color: var(--rust); }
+
+  .hero-photo{
+    margin-top: 40px;
+    height: clamp(260px, 40vw, 420px);
+    background: linear-gradient(155deg, var(--dusk) 0%, #2C3644 55%, var(--ink) 100%);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+  .hero-photo::before{
+    content:'';
+    position:absolute; inset:0;
+    background:
+      radial-gradient(circle 90px at 82% 20%, rgba(199,154,60,0.6), transparent 70%),
+      radial-gradient(ellipse 60% 30% at 20% 100%, rgba(84,95,66,0.55), transparent),
+      radial-gradient(ellipse 70% 35% at 70% 100%, rgba(84,95,66,0.4), transparent);
+  }
+  .hero-photo span{
+    position:relative;
+    font-family: var(--font-mono);
+    color: rgba(245,240,225,0.6);
+    font-size: 0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    text-align:center;
+    padding: 10px;
+  }
+
+  /* ---------- SECTION HEAD ---------- */
+  section{ padding: clamp(56px,8vw,96px) 0; border-bottom: 3px solid var(--ink); }
+  section:last-of-type{ border-bottom:none; }
+  .sec-num{
+    font-family: var(--font-mono);
+    color: var(--rust);
+    font-size: 0.85rem;
+  }
+  .sec-title{
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(2rem, 4.5vw, 3.4rem);
+    text-transform: uppercase;
+    margin-top: 4px;
+    margin-bottom: 40px;
+  }
+
+  /* ---------- TENTANG ---------- */
+  .about-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:50px; }
+  @media (max-width: 820px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid p{ margin-bottom: 14px; font-size: 1.02rem; }
+  .fact-list{ display:flex; flex-direction:column; gap: 0; }
+  .fact-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding: 16px 0;
+    border-bottom: 2px solid var(--ink);
+  }
+  .fact-row:first-child{ border-top: 2px solid var(--ink); }
+  .fact-row .label{ font-family: var(--font-mono); font-size:0.78rem; text-transform:uppercase; }
+  .fact-row .val{ font-family: var(--font-display); font-weight:700; font-size:1.3rem; }
+
+  /* ---------- GALERI ---------- */
+  .gallery-strip{
+    display:flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+  .gallery-strip .slot{
+    flex: 0 0 clamp(200px, 30vw, 320px);
+    height: 260px;
+    display:flex; align-items:flex-end;
+    padding: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: rgba(245,240,225,0.75);
+    text-transform:uppercase;
+  }
+  .slot:nth-child(1){ background: linear-gradient(160deg, var(--dusk), #22293380); }
+  .slot:nth-child(2){ background: linear-gradient(160deg, var(--moss), #33391f); }
+  .slot:nth-child(3){ background: linear-gradient(160deg, var(--gold), #8a6a24); }
+  .slot:nth-child(4){ background: linear-gradient(160deg, var(--rust), #7a331a); }
+  .slot:nth-child(5){ background: linear-gradient(160deg, var(--ink), #000); }
+
+  /* ---------- FASILITAS ---------- */
+  .fac-list{ display:flex; flex-direction:column; }
+  .fac-item{
+    display:grid;
+    grid-template-columns: 60px 1fr 1fr;
+    gap: 18px;
+    padding: 20px 0;
+    border-top: 2px solid var(--ink);
+    align-items:center;
+  }
+  .fac-list .fac-item:last-child{ border-bottom: 2px solid var(--ink); }
+  @media (max-width: 700px){
+    .fac-item{ grid-template-columns: 40px 1fr; }
+    .fac-item .fac-desc{ grid-column: 2; }
+  }
+  .fac-num{ font-family: var(--font-mono); color: var(--rust); font-size:0.9rem; }
+  .fac-name{ font-family: var(--font-display); font-weight:700; font-size: 1.3rem; text-transform:uppercase; }
+  .fac-desc{ font-size: 0.94rem; opacity: 0.85; }
+
+  .price-strip{
+    margin-top: 44px;
+    background: var(--ink);
+    color: var(--paper);
+    padding: clamp(24px,4vw,38px);
+  }
+  .price-strip h3{
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    color: var(--gold);
+  }
+  .price-grid{ display:grid; grid-template-columns: repeat(2,1fr); gap: 4px 40px; }
+  @media (max-width:600px){ .price-grid{ grid-template-columns:1fr; } }
+  .price-item{
+    display:flex; justify-content:space-between;
+    padding: 12px 0;
+    border-bottom: 1px dotted rgba(245,240,225,0.3);
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+  }
+
+  /* ---------- LOKASI ---------- */
+  .loc-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:40px; align-items:stretch; }
+  @media (max-width:820px){ .loc-grid{ grid-template-columns:1fr; } }
+  .map-frame{ border: 2px solid var(--ink); height: 320px; }
+  .map-frame iframe{ width:100%; height:100%; border:0; filter: grayscale(0.3) contrast(1.05); }
+  .route-list{ counter-reset: step; }
+  .route-item{
+    counter-increment: step;
+    display:flex; gap:16px;
+    padding: 16px 0;
+    border-bottom: 1px dotted rgba(38,35,25,0.35);
+  }
+  .route-item::before{
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--font-mono);
+    color: var(--rust);
+    font-weight:700;
+    flex-shrink:0;
+  }
+
+  .btn{
+    display:inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    padding: 13px 24px;
+    border: 2px solid var(--ink);
+    background: transparent;
+    cursor:pointer;
+    clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 100%, 10px 100%);
+  }
+  .btn-solid{ background: var(--ink); color: var(--canvas); }
+  .btn-solid:hover{ background: var(--rust); border-color: var(--rust); }
+  .btn:not(.btn-solid):hover{ background: var(--ink); color: var(--canvas); }
+
+  /* ---------- KONTAK ---------- */
+  .contact{
+    background: var(--dusk);
+    color: var(--paper);
+    border-bottom: none;
+  }
+  .contact .sec-title{ color: var(--gold); }
+  .contact .sec-num{ color: var(--gold); }
+  .contact-sub{ max-width: 50ch; margin-bottom: 32px; opacity: 0.85; }
+  .contact-actions{ display:flex; gap: 14px; flex-wrap: wrap; }
+  .contact .btn{ border-color: var(--paper); color: var(--paper); }
+  .contact .btn-solid{ background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .contact .btn-solid:hover{ background: var(--rust); border-color:var(--rust); color: var(--paper); }
+  .contact .btn:not(.btn-solid):hover{ background: var(--paper); color: var(--dusk); }
+
+  footer{
+    background: var(--ink);
+    color: rgba(245,240,225,0.5);
+    text-align:center;
+    padding: 22px 20px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+  }
+
+  .reveal{ opacity:0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){ .reveal{ opacity:1; transform:none; transition:none; } }
+
+  a:focus-visible, button:focus-visible{ outline: 2px solid var(--rust); outline-offset:2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap" style="padding-left:0;padding-right:0;">
+    <div class="logo">Lembah<span>Tedeng</span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="#tentang">Tentang</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#fasilitas">Fasilitas</a>
+      <a href="#lokasi">Lokasi</a>
+      <a href="#kontak" class="nav-cta">Reservasi</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Buka menu">☰</button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" style="border-bottom:none; padding-bottom:0;">
+  <div class="wrap">
+    <div class="hero-top">
+      <div>
+        <span class="hero-eyebrow">Kejajar · Dieng · Wonosobo</span>
+        <h1 class="hero-title">Kemah<br><span class="line2">di atas awan</span></h1>
+      </div>
+      <div class="stamp">
+        <b>±2000</b>
+        <small>mdpl</small>
+        <small style="margin-top:2px;">Camping Ground</small>
+      </div>
+    </div>
+
+    <div class="hero-sub">
+      <div class="hero-desc">
+        <p class="lead">Lembah Tedeng — tempat dirikan tenda, tunggu matahari terbit, dan lihat bukit berbunga dari dekat.</p>
+        <p style="margin-top:14px;">
+          <!-- EDIT: pastikan/lengkapi deskripsi ini sesuai info terbaru dari pengelola -->
+          Berada di kawasan dataran tinggi Dieng, Lembah Tedeng dikenal sebagai spot camping dengan pemandangan sunrise
+          dan hamparan bukit berbunga. Cocok untuk yang ingin kemah santai tanpa harus mendaki jauh — akses kendaraan
+          bisa cukup dekat dengan area tenda.
+        </p>
+        <div class="hero-actions" style="margin-top:26px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="#kontak" class="btn btn-solid">Reservasi Sekarang</a>
+          <a href="#galeri" class="btn">Lihat Galeri</a>
+        </div>
+      </div>
+      <div class="ticket">
+        <div class="ticket-row"><span>Tiket masuk</span><b>[Rp 5.000]</b></div>
+        <div class="ticket-row"><span>Paket camping</span><b>[Rp 200rb–400rb]</b></div>
+        <div class="ticket-row"><span>Sewa jeep</span><b>[Tersedia]</b></div>
+        <div class="ticket-row"><span>Jam operasional</span><b>[24 jam]</b></div>
+        <div class="ticket-row"><span>Reservasi</span><b>WA/IG</b></div>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <span><!-- EDIT: ganti dengan foto asli area camping/sunrise -->[ Ganti dengan foto sunrise / area tenda ]</span>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TENTANG ================= -->
+<section id="tentang">
+  <div class="wrap reveal">
+    <span class="sec-num">01 / Tentang</span>
+    <h2 class="sec-title">Yang bikin beda</h2>
+    <div class="about-grid">
+      <div>
+        <p>
+          <!-- EDIT: cerita/sejarah dan keunikan tempat ini, tulis dengan gaya bicara pengelola -->
+          Lembah Tedeng terkenal lewat konten sunrise dan bukit berbunga yang banyak dibagikan wisatawan di media sosial.
+          Areanya dikelola supaya pengunjung bisa kemah dengan nyaman — akses kendaraan relatif dekat ke titik tenda,
+          jadi tidak perlu membawa perlengkapan jalan jauh seperti di jalur pendakian pada umumnya.
+        </p>
+        <p>
+          Selain camping, tersedia opsi sewa jeep untuk yang ingin menjelajah kawasan Dieng lebih luas dalam satu perjalanan.
+        </p>
+      </div>
+      <div class="fact-list">
+        <div class="fact-row"><span class="label">Ketinggian</span><span class="val">±2000 mdpl</span></div>
+        <div class="fact-row"><span class="label">Suhu malam</span><span class="val">[5–12]°C</span></div>
+        <div class="fact-row"><span class="label">Waktu terbaik</span><span class="val">[Musim kemarau]</span></div>
+        <div class="fact-row"><span class="label">Dari Wonosobo</span><span class="val">[45] menit</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALERI ================= -->
+<section id="galeri">
+  <div class="wrap reveal">
+    <span class="sec-num">02 / Galeri</span>
+    <h2 class="sec-title">Suasana lembah</h2>
+    <div class="gallery-strip">
+      <div class="slot">Sunrise</div>
+      <div class="slot">Bukit berbunga</div>
+      <div class="slot">Area tenda</div>
+      <div class="slot">Jeep tour</div>
+      <div class="slot">Malam hari</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FASILITAS ================= -->
+<section id="fasilitas">
+  <div class="wrap reveal">
+    <span class="sec-num">03 / Fasilitas</span>
+    <h2 class="sec-title">Apa saja yang ada</h2>
+    <div class="fac-list">
+      <div class="fac-item">
+        <span class="fac-num">01</span>
+        <span class="fac-name">Area Tenda</span>
+        <span class="fac-desc">Lahan datar untuk dirikan tenda sendiri atau sewa di lokasi.</span>
+      </div>
+      <div class="fac-item">
+        <span class="fac-num">02</span>
+        <span class="fac-name">Toilet & Air Bersih</span>
+        <span class="fac-desc">Fasilitas dasar tersedia di area camping.</span>
+      </div>
+      <div class="fac-item">
+        <span class="fac-num">03</span>
+        <span class="fac-name">Warung</span>
+        <span class="fac-desc">Makanan dan minuman hangat, penting buat suhu dingin malam hari.</span>
+      </div>
+      <div class="fac-item">
+        <span class="fac-num">04</span>
+        <span class="fac-name">Sewa Jeep</span>
+        <span class="fac-desc">Untuk jelajah kawasan Dieng, bisa dipesan langsung di lokasi.</span>
+      </div>
+      <div class="fac-item">
+        <span class="fac-num">05</span>
+        <span class="fac-name">Spot Foto</span>
+        <span class="fac-desc">Titik-titik pemandangan sunrise dan bukit berbunga.</span>
+      </div>
+    </div>
+
+    <div class="price-strip">
+      <h3>Harga & Paket</h3>
+      <div class="price-grid">
+        <div class="price-item"><span>Tiket masuk / orang</span><b>Rp 5.000</b></div>
+        <div class="price-item"><span>Paket camping (tenda+sarapan)</span><b>Rp 200.000–400.000</b></div>
+        <div class="price-item"><span>Sewa jeep (per trip)</span><b>[hubungi CS]</b></div>
+        <div class="price-item"><span>Parkir kendaraan</span><b>[Rp 5.000]</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOKASI ================= -->
+<section id="lokasi">
+  <div class="wrap reveal">
+    <span class="sec-num">04 / Lokasi</span>
+    <h2 class="sec-title">Cara ke sini</h2>
+    <div class="loc-grid">
+      <div class="map-frame">
+        <!-- EDIT: ganti src dengan embed Google Maps titik lokasi asli -->
+        <iframe src="https://www.google.com/maps?q=Dieng,+Kejajar,+Wonosobo&output=embed" loading="lazy" allowfullscreen></iframe>
+      </div>
+      <div>
+        <div class="route-list">
+          <div class="route-item"><p>Dari pusat Kota Wonosobo, ambil arah Dieng lewat Kecamatan Kejajar (±45 menit).</p></div>
+          <div class="route-item"><p>Ikuti jalur utama Dieng, lalu belok mengikuti papan penunjuk arah Lembah Tedeng.</p></div>
+          <div class="route-item"><p>Kendaraan bisa parkir dekat area tenda — cocok untuk yang bawa perlengkapan camping banyak.</p></div>
+        </div>
+        <a href="https://www.google.com/maps?q=Dieng,+Kejajar,+Wonosobo" target="_blank" rel="noopener" class="btn btn-solid" style="margin-top:20px;">Buka di Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KONTAK ================= -->
+<section class="contact" id="kontak">
+  <div class="wrap reveal">
+    <span class="sec-num">05 / Kontak</span>
+    <h2 class="sec-title">Reservasi tempat kemahmu</h2>
+    <p class="contact-sub">Booking tenda, tanya paket rombongan, atau sewa jeep — hubungi langsung pengelola.</p>
+    <div class="contact-actions">
+      <!-- EDIT: ganti nomor WhatsApp resmi pengelola -->
+      <a href="https://wa.me/62xxxxxxxxxxx" target="_blank" rel="noopener" class="btn btn-solid">WhatsApp</a>
+      <a href="https://www.instagram.com/lembahtedeng/" target="_blank" rel="noopener" class="btn">Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Website dibuat oleh mahasiswa KKN UGM — Desa Parikesit, Kejajar, Wonosobo © 2026
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => obs.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
