@@ -155,7 +155,14 @@
     letter-spacing: -0.01em;
     margin-top: 8px;
   }
-  h1.hero-title .line2{ color: var(--rust); margin-left: clamp(20px, 6vw, 90px); }
+  h1.hero-title .line2{
+  display: block;
+  color: var(--rust);
+  font-size: 0.32em;
+  margin-left: 0;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+  }
 
   .hero-sub{
     padding-bottom: 50px;
@@ -363,7 +370,7 @@
 <header>
   <nav class="wrap" style="padding-left:0;padding-right:0;">
     <div class="nav-brand">
-      <!-- EDIT: ganti div ini dengan <img src="logo-lembah-tedeng.png" alt="Logo Lembah Tedeng" style="width:46px;height:46px;border-radius:50%;object-fit:cover;"> -->
+      <img src="logo-lembah-tedeng.png" alt="Logo Lembah Tedeng" style="width:46px;height:46px;border-radius:50%;object-fit:cover;"> -->
       <div class="logo-slot">LOGO</div>
       <div class="logo">Lembah<span>Tedeng</span></div>
     </div>
@@ -505,14 +512,14 @@
     <div class="loc-grid">
       <div class="map-frame">
         <!-- EDIT: ganti src dengan embed Google Maps titik lokasi asli -->
-        <iframe src="https://maps.app.goo.gl/7HPbDp28M1BwJYqg6" loading="lazy" allowfullscreen></iframe>
+        <iframe src="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.1922373436696!2d109.93407719999999!3d-7.2189007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e700d007e8cd553%3A0xe3d6d606fcc74865!2sCamp%20Area%20Lembah%20Tedeng!5e0!3m2!1sid!2sid!4v1785491973791!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>" loading="lazy" allowfullscreen></iframe>
       </div>
       <div>
         <div class="route-list">
           <div class="route-item"><p>Dari pusat Kota Wonosobo, ambil arah Dieng lewat Kecamatan Kejajar (±45 menit).</p></div>
           <div class="route-item"><p>Ikuti jalur utama Dieng, lalu belok mengikuti papan penunjuk arah Lembah Tedeng.</p></div>
         </div>
-        <a href="https://maps.app.goo.gl/7HPbDp28M1BwJYqg6" target="_blank" rel="noopener" class="btn btn-solid" style="margin-top:20px;">Buka di Google Maps</a>
+        <a href="<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.1922373436696!2d109.93407719999999!3d-7.2189007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e700d007e8cd553%3A0xe3d6d606fcc74865!2sCamp%20Area%20Lembah%20Tedeng!5e0!3m2!1sid!2sid!4v1785491973791!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>" target="_blank" rel="noopener" class="btn btn-solid" style="margin-top:20px;">Buka di Google Maps</a>
       </div>
     </div>
   </div>
